@@ -1,0 +1,28 @@
+<body>
+    <h2>Решите: <span id="example"></span></h2>
+    <input type="text" id="answer" placeholder="Ваш ответ">
+    <button onclick="checkAnswer()">Проверить</button>
+    <button onclick="refreshProblem()">Обновить</button> <!-- Новая кнопка -->
+
+    <p id="result"></p>
+
+    <script>
+        let correctAnswer = {{ answer | tojson }};
+        document.getElementById('example').innerText = "{{ example }}";
+
+        function checkAnswer() {
+            let userAnswer = document.getElementById('answer').value;
+            let result = document.getElementById('result');
+
+            if (parseInt(userAnswer) === correctAnswer) {
+                result.innerText = "Верно!";
+            } else {
+                result.innerText = "Неверно, попробуйте еще раз.";
+            }
+        }
+
+        function refreshProblem() {
+            location.reload(); // Перезагрузка страницы для получения нового примера
+        }
+    </script>
+</body>
